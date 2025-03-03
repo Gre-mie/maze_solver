@@ -1,7 +1,14 @@
-from tkinter import TK, BOTH, Canvas
+# main.py, runs the programme
+
+from objects.window import Window
 
 def main():
-    print("hello world")
+    
+    window = Window()
+
+    window.run() # temp code
+
+
 
 if __name__ == "__main__":
     main()
