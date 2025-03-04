@@ -4,9 +4,9 @@ from objects.window import Window
 
 def main():
     
-    window = Window()
-
-    window.run() # temp code
+    window = Window(800, 600)
+    window.wait_for_close()
+    
 
 
 
