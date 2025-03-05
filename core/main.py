@@ -19,9 +19,14 @@ def main():
     size_y = window.height // num_cells
 
     # creates the cells
+
     for j in range(0, window.height, size_y):
+        if len(cells) > num_cells - 1:
+            break
         row = []
         for i in range(0, window.width, size_x):
+            if len(row) > num_cells -1:
+                break
             row.append(Cell(
                 window,
                 Point(i, j),
