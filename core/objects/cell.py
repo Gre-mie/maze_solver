@@ -14,6 +14,7 @@ class Cell:
                 self.p1.y + (self.p2.y - self.p1.y) / 2
             ))
 
+        # these should be set to boolan values
         self.left = Line(Point(self.p1.x, self.p1.y), Point(self.p1.x, self.p2.y))
         self.right = Line(Point(self.p2.x, self.p1.y), Point(self.p2.x, self.p2.y))
         self.top = Line(Point(self.p1.x, self.p1.y), Point(self.p2.x, self.p1.y))
@@ -22,6 +23,7 @@ class Cell:
         self.line_col = "#223300"
 
     
+    # Possibly needs reworking
     def draw(self):
         if self.left:
             self.__win.draw_line(self.left, self.line_col)

@@ -1,6 +1,6 @@
 # stores a single point as x and y
 class Point:
-    def __init__(self, x:int, y:int):
+    def __init__(self, x:int|None, y:int|None):
         self.x = x
         self.y = y
     

@@ -12,6 +12,8 @@ def main():
 
     maze = Maze(window, Point(10, 10))
     
+
+    # temp code
     print(maze, "\n")
     for v in maze.debug_formatted_arguments():
         print(v)

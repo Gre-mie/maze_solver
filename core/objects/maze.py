@@ -22,9 +22,18 @@ class Maze:
         self.cell_x = cell_size_x
         self.cell_y = cell_size_y
 
-        self.cells = []
-
         self.__win = win
+
+        self.cells = self._create_cells()
+
+
+    # return an array of Cell objects, each sub array represents a column
+    def _create_cells(self):
+        arr = []
+
+        arr.append(Cell(self.__win, Point(None,None), Point(None, None))) # test line
+
+        return arr
 
 
     # temp method
