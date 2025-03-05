@@ -9,21 +9,36 @@ class Cell:
 
         self.p1 = p1
         self.p2 = p2
+        self.center = (Point(
+                self.p1.x + (self.p2.x - self.p1.x) / 2, 
+                self.p1.y + (self.p2.y - self.p1.y) / 2
+            ))
 
         self.left = Line(Point(self.p1.x, self.p1.y), Point(self.p1.x, self.p2.y))
         self.right = Line(Point(self.p2.x, self.p1.y), Point(self.p2.x, self.p2.y))
         self.top = Line(Point(self.p1.x, self.p1.y), Point(self.p2.x, self.p1.y))
         self.bottom = Line(Point(self.p1.x, self.p2.y), Point(self.p2.x, self.p2.y))
+
+        self.line_col = "#223300"
+
     
     def draw(self):
         if self.left:
-            self.__win.draw_line(self.left, "black")
+            self.__win.draw_line(self.left, self.line_col)
         if self.right:
-            self.__win.draw_line(self.right, "black")
+            self.__win.draw_line(self.right, self.line_col)
         if self.top:
-            self.__win.draw_line(self.top, "red")
+            self.__win.draw_line(self.top, self.line_col)
         if self.bottom:
-            self.__win.draw_line(self.bottom, "red")
+            self.__win.draw_line(self.bottom, self.line_col)
+    
+    # draws a line from the center of This Cell to the center of the to_cell Cell
+    def draw_move(self, to_cell, *, redo=False):
+        line_col = "#CC2288"
+        if redo:
+            line_col = "grey"
+        
+        self.__win.draw_line(Line(self.center, to_cell.center), line_col)
 
 
 

@@ -1,5 +1,5 @@
 # window.py, a window object
-from tkinter import Tk, BOTH, Canvas
+from tkinter import Tk, BOTH, Canvas, Frame
 from objects.line import Line
 
 class Window:
@@ -12,7 +12,7 @@ class Window:
         self.height = height
     
         self.canvas = Canvas(self.__root, width=self.width, height=self.height, background="#5050AA")
-        self.canvas.pack()
+        self.canvas.pack(padx=5, pady=5)
         self.running = False
 
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
