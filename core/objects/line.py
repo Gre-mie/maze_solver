@@ -8,4 +8,4 @@ class Line:
         self.p2 = p2
     
     def draw(self, canvas:Canvas, col):
-        canvas.create_line(self.p1.x, self.p1.y, self.p2.x, self.p2.y, fill=col, width=5)
+        canvas.create_line(self.p1.x, self.p1.y, self.p2.x, self.p2.y, fill=col, width=3)
