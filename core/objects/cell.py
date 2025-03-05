@@ -24,4 +24,9 @@ class Cell:
             self.__win.draw_line(self.top, "red")
         if self.bottom:
             self.__win.draw_line(self.bottom, "red")
+
+
+
+    def __repr__(self):
+        return f"Class: Cell(self, window={self.__win}, p1={self.p1}, p2={self.p2}):"
         

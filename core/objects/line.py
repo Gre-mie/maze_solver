@@ -9,3 +9,7 @@ class Line:
     
     def draw(self, canvas:Canvas, col):
         canvas.create_line(self.p1.x, self.p1.y, self.p2.x, self.p2.y, fill=col, width=3)
+
+
+    def __repr__(self):
+        return f"Class: Line(self, p1={self.p1}, p2={self.p2})"

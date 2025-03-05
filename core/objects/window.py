@@ -38,4 +38,4 @@ class Window:
         
 
     def __repr__(self):
-        return f"Window(width={self.width}, height={self.height})"
+        return f"Class: Window(width={self.width}, height={self.height})"
