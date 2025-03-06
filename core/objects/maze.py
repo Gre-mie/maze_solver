@@ -42,6 +42,7 @@ class Maze:
             for j in range(self.rows):
                 self._draw_cell(i, j)
                 
+                
     def _draw_cell(self, i, j):
         pos_x = (self.cell_x * i) + self._origin.x
         pos_y = (self.cell_y * j) + self._origin.y
@@ -51,24 +52,10 @@ class Maze:
         )
         self._animate()
 
+
     def _animate(self):
         self._win.redraw()
         time.sleep(0.05)
-
-
-
-    # temp method
-    def debug_formatted_arguments(self):
-        return [
-            "Class Maze:",
-            f"origin: {self._origin}",
-            f"rows: {self.rows}",
-            f"cols: {self.cols}",
-            f"cell x: {self.cell_x}",
-            f"cell y: {self.cell_y}",
-            f"cells: {self.cells}",
-            f"win: {self._win}",
-        ]
 
     
     def __repr__(self):

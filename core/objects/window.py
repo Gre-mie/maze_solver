@@ -22,20 +22,20 @@ class Window:
         self.__root.update_idletasks()
         self.__root.update()
 
+
     def wait_for_close(self):
         self.running = True
         while self.running:
             self.redraw()
 
+
     def close(self):
         self.running = False
+    
     
     def draw_line(self, line: Line, col):
         line.draw(self.canvas, col)
 
-
-
-        
 
     def __repr__(self):
         return f"Class: Window(width={self.width}, height={self.height})"

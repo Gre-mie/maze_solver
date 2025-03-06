@@ -9,13 +9,8 @@ class Cell:
 
         self.p1 = p1
         self.p2 = p2
-        self.center = None # this can be removed
-        # Point(
-#                self.p1.x + (self.p2.x - self.p1.x) / 2, 
- #               self.p1.y + (self.p2.y - self.p1.y) / 2
-  #          )
 
-        # these should be set to boolan values
+        self.center = None
         self.left = True
         self.right = True
         self.top = True
@@ -34,7 +29,7 @@ class Cell:
                 )
     
     
-    # Possibly needs reworking
+    # Sets the position of the cells and calls draw
     def draw(self, p1:Point, p2:Point):
         self.p1 = p1
         self.p2 = p2
