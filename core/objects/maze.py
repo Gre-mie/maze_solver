@@ -15,14 +15,14 @@ class Maze:
             cell_size_y:int=47  # size 50 - line width (3)
         ):
 
-        self.__origin = origin
+        self._origin = origin
 
         self.rows = num_rows
         self.cols = num_cols
         self.cell_x = cell_size_x
         self.cell_y = cell_size_y
 
-        self.__win = win
+        self._win = win
 
         self._cells = []
 
@@ -35,20 +35,25 @@ class Maze:
         for _ in range(self.cols):
             col = []
             for _ in range(self.rows):
-                col.append(Cell(self.__win, Point(None,None), Point(None, None)))
+                col.append(Cell(self._win, Point(None,None), Point(None, None)))
             self._cells.append(col)
 
-        for i in range(len(self._cells)):
-            for j in range(len(self._cells[i])):
-                self._draw_cell(i,j)
+        for i in range(self.cols):
+            for j in range(self.rows):
+                self._draw_cell(i, j)
                 
     def _draw_cell(self, i, j):
-        pos_x = (self.cell_x * i) + self.__origin.x
-        pos_y = (self.cell_y * j) + self.__origin.y
+        pos_x = (self.cell_x * i) + self._origin.x
+        pos_y = (self.cell_y * j) + self._origin.y
         self._cells[i][j].draw(
                 Point(pos_x, pos_y), 
                 Point(pos_x + self.cell_x, pos_y + self.cell_y)
         )
+        self._animate()
+
+    def _animate(self):
+        self._win.redraw()
+        time.sleep(0.05)
 
 
 
@@ -56,15 +61,15 @@ class Maze:
     def debug_formatted_arguments(self):
         return [
             "Class Maze:",
-            f"origin: {self.__origin}",
+            f"origin: {self._origin}",
             f"rows: {self.rows}",
             f"cols: {self.cols}",
             f"cell x: {self.cell_x}",
             f"cell y: {self.cell_y}",
             f"cells: {self.cells}",
-            f"win: {self.__win}",
+            f"win: {self._win}",
         ]
 
     
     def __repr__(self):
-        return f"Class: Maze(self, win={self.__win}, cords={self.__origin}, num_rows={self.rows}, num_cols={self.cols}, cell_size_x={self.cell_x}, cell_size_y={self.cell_y})"
+        return f"Class: Maze(self, win={self._win}, cords={self._origin}, num_rows={self.rows}, num_cols={self.cols}, cell_size_x={self.cell_x}, cell_size_y={self.cell_y})"
