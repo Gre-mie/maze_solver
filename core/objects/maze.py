@@ -24,27 +24,32 @@ class Maze:
 
         self.__win = win
 
-        self.cells = self._create_cells()
+        self._cells = []
+
+        self._create_cells()
 
 
     # return an array of Cell objects, each sub array represents a column
     def _create_cells(self):
-        arr = []
 
-        # test code
-        for cols in range(self.cols):
+        for _ in range(self.cols):
             col = []
-            for rows in range(self.rows):
+            for _ in range(self.rows):
                 col.append(Cell(self.__win, Point(None,None), Point(None, None)))
-            arr.append(col)
+            self._cells.append(col)
 
-        print(f"arr: cols: {len(arr)}  rows: {len(arr[0])}")
+        for i in range(len(self._cells)):
+            for j in range(len(self._cells[i])):
+                self._draw_cell(i,j)
+                
+    def _draw_cell(self, i, j):
+        pos_x = (self.cell_x * i) + self.__origin.x
+        pos_y = (self.cell_y * j) + self.__origin.y
+        self._cells[i][j].draw(
+                Point(pos_x, pos_y), 
+                Point(pos_x + self.cell_x, pos_y + self.cell_y)
+        )
 
-        test = arr[0][0]                            # test code
-        test.draw(Point(10,10), Point(100,100))     # test code
-
-
-        return arr
 
 
     # temp method
