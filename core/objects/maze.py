@@ -12,7 +12,8 @@ class Maze:
             num_rows:int=9, 
             num_cols:int=9, 
             cell_size_x:int=47, # size 50 - line width (3)
-            cell_size_y:int=47  # size 50 - line width (3)
+            cell_size_y:int=47,  # size 50 - line width (3)
+            speed:int= 0.05
         ):
 
         self._origin = origin
@@ -22,6 +23,7 @@ class Maze:
         self.cell_x = cell_size_x
         self.cell_y = cell_size_y
 
+        self._speed = speed
         self._win = win
 
         self._cells = []
@@ -30,6 +32,7 @@ class Maze:
 
 
     # return an array of Cell objects, each sub array represents a column
+    # Calls draw_cell on each cell
     def _create_cells(self):
 
         for _ in range(self.cols):
@@ -42,7 +45,9 @@ class Maze:
             for j in range(self.rows):
                 self._draw_cell(i, j)
                 
-                
+
+    # Set the position of a cell in the maze
+    # calls .draw method on the cell
     def _draw_cell(self, i, j):
         pos_x = (self.cell_x * i) + self._origin.x
         pos_y = (self.cell_y * j) + self._origin.y
@@ -50,12 +55,14 @@ class Maze:
                 Point(pos_x, pos_y), 
                 Point(pos_x + self.cell_x, pos_y + self.cell_y)
         )
+
         self._animate()
 
 
+    # Slows down the programme to make it look animated
     def _animate(self):
         self._win.redraw()
-        time.sleep(0.05)
+        time.sleep(self._speed)
 
     
     def __repr__(self):
