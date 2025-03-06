@@ -31,7 +31,18 @@ class Maze:
     def _create_cells(self):
         arr = []
 
-        arr.append(Cell(self.__win, Point(None,None), Point(None, None))) # test line
+        # test code
+        for cols in range(self.cols):
+            col = []
+            for rows in range(self.rows):
+                col.append(Cell(self.__win, Point(None,None), Point(None, None)))
+            arr.append(col)
+
+        print(f"arr: cols: {len(arr)}  rows: {len(arr[0])}")
+
+        test = arr[0][0]                            # test code
+        test.draw(Point(10,10), Point(100,100))     # test code
+
 
         return arr
 
