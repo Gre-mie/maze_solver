@@ -5,10 +5,9 @@ from objects.point import Point
 
 class Maze:
     def __init__(
-            self, 
-            win,  
-            origin:Point, 
-            *, 
+            self,   
+            win=None,
+            origin:Point=Point(0,0), 
             num_rows:int=9, 
             num_cols:int=9, 
             cell_size_x:int=47, # size 50 - line width (3)
@@ -38,7 +37,7 @@ class Maze:
         for _ in range(self.cols):
             col = []
             for _ in range(self.rows):
-                col.append(Cell(self._win, Point(None,None), Point(None, None)))
+                col.append(Cell(self._win))
             self._cells.append(col)
 
         for i in range(self.cols):

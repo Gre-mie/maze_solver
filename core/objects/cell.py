@@ -4,7 +4,7 @@ from objects.line import Line
 from objects.point import Point
 
 class Cell:
-    def __init__(self, window:Window, p1:Point, p2:Point, *, col="#223300"):
+    def __init__(self, window:Window=None, p1:Point=Point(None, None), p2:Point=Point(None, None), *, col="#223300"):
         self.__win = window
 
         self.p1 = p1
