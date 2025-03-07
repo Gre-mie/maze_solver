@@ -29,7 +29,6 @@ class Maze:
         self.cell_x = cell_size_x
         self.cell_y = cell_size_y
 
-
         self._cells = []
 
         random.seed(self._seed)
@@ -37,8 +36,6 @@ class Maze:
         self._create_cells()
         self._break_entrance_and_exit()
         self._break_walls_r(0, 0) # starts at the first block in the grid
-
-
 
 
     # return an array of Cell objects, each sub array represents a column
@@ -98,6 +95,7 @@ class Maze:
         self._draw_cell(self.cols - 1, self.rows - 1)
 
 
+    # Walks through the maze removing walls on its way
     def _break_walls_r(self, i, j):
         self._cells[i][j].visited = True
 
@@ -109,22 +107,17 @@ class Maze:
             for direction in directions:
                 a, b = direction
                 if a >= 0 and b >= 0 and a < self.cols and b < self.rows:
-                    print(f"cell: {a}, {b}   visited: {self._cells[a][b].visited}") # testing
                     if self._cells[a][b].visited == False:
                         to_visit.append((a, b))
-
-            print(f"to visit: {to_visit}") # testing
             
-
             # Breaks out of the loop if there are no places to visit
             if len(to_visit) < 1:
                 print(f"cell: {i}, {j}")
                 self._draw_cell(i, j)
                 break
 
-            # picks a random direction
+            # picks a random direction and removes the walls
             visit = to_visit[random.randrange(len(to_visit))]
-            print(f"visit: {visit}") # testing - should move to the right
             # up
             if visit == directions[0]:
                 print("move up")
@@ -149,10 +142,8 @@ class Maze:
                 self._cells[i][j].right = False
                 self._cells[visit[0]][visit[1]].left = False
 
-
-
-            break # test
-
+            # recurse using the cell visit
+            self._break_walls_r(visit[0], visit[1])
 
     
     def __repr__(self):

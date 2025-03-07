@@ -20,7 +20,6 @@ class Cell:
         self.visited = False
 
 
-
     # Returns the center of the cell object
     def get_center(self):
  
@@ -47,7 +46,7 @@ class Cell:
         if self.right:
             self._win.draw_line(right_line, self._line_col)
         else:
-            self._win.draw_line(right_line, self._line_col)
+            self._win.draw_line(right_line, self._background)
 
         top_line = Line(Point(self.p1.x, self.p1.y), Point(self.p2.x, self.p1.y))
         if self.top:
@@ -69,8 +68,6 @@ class Cell:
             line_col = "grey"
         
         self._win.draw_line(Line(self.get_center(), to_cell.get_center()), line_col)
-
-    
 
 
     def __repr__(self):
