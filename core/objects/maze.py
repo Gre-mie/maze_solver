@@ -34,9 +34,9 @@ class Maze:
     # Calls draw_cell on each cell
     def _create_cells(self):
 
-        for _ in range(self.cols):
+        for i in range(self.cols):
             col = []
-            for _ in range(self.rows):
+            for j in range(self.rows):
                 col.append(Cell(self._win))
             self._cells.append(col)
 
@@ -50,12 +50,17 @@ class Maze:
     def _draw_cell(self, i, j):
         pos_x = (self.cell_x * i) + self._origin.x
         pos_y = (self.cell_y * j) + self._origin.y
-        self._cells[i][j].draw(
-                Point(pos_x, pos_y), 
-                Point(pos_x + self.cell_x, pos_y + self.cell_y)
-        )
 
-        self._animate()
+        self._cells[i][j].p1 = Point(pos_x, pos_y)
+        self._cells[i][j].p2 = Point(pos_x + self.cell_x, pos_y + self.cell_y)
+
+        if self._win:
+            self._cells[i][j].draw(
+                    Point(pos_x, pos_y), 
+                    Point(pos_x + self.cell_x, pos_y + self.cell_y)
+            )
+
+            self._animate()
 
 
     # Slows down the programme to make it look animated
