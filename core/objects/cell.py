@@ -71,5 +71,5 @@ class Cell:
 
 
     def __repr__(self):
-        return f"Class: Cell(self, window={self.__win}, p1={self.p1}, p2={self.p2}, col={self._line_col}, background={self._background})"
+        return f"Class: Cell(self, window={self._win}, p1={self.p1}, p2={self.p2}, col={self._line_col}, background={self._background})"
         

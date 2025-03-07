@@ -36,6 +36,7 @@ class Maze:
         self._create_cells()
         self._break_entrance_and_exit()
         self._break_walls_r(0, 0) # starts at the first block in the grid
+        self._reset_cells_visited()
 
 
     # return an array of Cell objects, each sub array represents a column
@@ -139,6 +140,12 @@ class Maze:
 
             # recurse using the cell visit
             self._break_walls_r(visit[0], visit[1])
+    
+    # resets the visited variable back to false
+    def _reset_cells_visited(self):
+        for col in self._cells:
+            for cell in col:
+                cell.visited = False
 
     
     def __repr__(self):
