@@ -24,20 +24,9 @@ def main():
             cell_size_x = cell_width,
             cell_size_y = cell_height,
             speed = 0.005,
+            background = background_col
         )
     
-
-    # vvv testing
-
-    cell1 = Cell(window, Point(225, 225), Point(275, 275), col="red")
-    cell2 = Cell(window, Point(275, 275), Point(325, 325), col="red")
-
-    cell1.draw(Point(225, 225), Point(275, 275))
-    cell2.draw(Point(500, 225), Point(730, 430))
-
-    cell1.draw_move(cell2, redo=True)
-
-    # ^^^ testing
 
 
 

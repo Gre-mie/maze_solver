@@ -30,6 +30,7 @@ class Maze:
         self._cells = []
 
         self._create_cells()
+        self._break_entrance_and_exit()
 
 
     # return an array of Cell objects, each sub array represents a column
@@ -39,7 +40,7 @@ class Maze:
         for i in range(self.cols):
             col = []
             for j in range(self.rows):
-                col.append(Cell(self._win))
+                col.append(Cell(self._win, background=self._background))
             self._cells.append(col)
 
         for i in range(self.cols):
@@ -50,18 +51,25 @@ class Maze:
     # Set the position of a cell in the maze
     # calls .draw method on the cell
     def _draw_cell(self, i, j):
-        pos_x = (self.cell_x * i) + self._origin.x
-        pos_y = (self.cell_y * j) + self._origin.y
+        pos_x = self._cells[i][j].p1.x
+        pos_y = self._cells[i][j].p1.y
 
-        self._cells[i][j].p1 = Point(pos_x, pos_y)
-        self._cells[i][j].p2 = Point(pos_x + self.cell_x, pos_y + self.cell_y)
+        # Does not recalculate if the position is already set
+        if (
+                not pos_x or
+                not pos_y
+            ):
+            pos_x = (self.cell_x * i) + self._origin.x
+            pos_y = (self.cell_y * j) + self._origin.y
+
+            self._cells[i][j].p1 = Point(pos_x, pos_y)
+            self._cells[i][j].p2 = Point(pos_x + self.cell_x, pos_y + self.cell_y)
 
         if self._win:
             self._cells[i][j].draw(
                     Point(pos_x, pos_y), 
                     Point(pos_x + self.cell_x, pos_y + self.cell_y)
             )
-
             self._animate()
 
 
@@ -70,6 +78,13 @@ class Maze:
         self._win.redraw()
         time.sleep(self._speed)
 
+
+    def _break_entrance_and_exit(self):
+        self._cells[0][0].top = False
+        self._draw_cell(0,0)
+
+        self._cells[self.cols - 1][self.rows - 1].bottom = False
+        self._draw_cell(self.cols - 1, self.rows - 1)
     
     def __repr__(self):
         return f"Class: Maze(self, win={self._win}, origin={self._origin}, num_rows={self.rows}, num_cols={self.cols}, cell_size_x={self.cell_x}, cell_size_y={self.cell_y}, speed={self._speed}, background={self._background})"
