@@ -9,8 +9,9 @@ def main():
 
     window_width = 800
     window_height = 600
+    background_col = "#5050AA"
     
-    window = Window(window_width, window_height)
+    window = Window(window_width, window_height, background_col)
 
     cell_width = 50
     cell_height = 50

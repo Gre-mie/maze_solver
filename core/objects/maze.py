@@ -12,7 +12,8 @@ class Maze:
             num_cols:int=9, 
             cell_size_x:int=47, # size 50 - line width (3)
             cell_size_y:int=47,  # size 50 - line width (3)
-            speed:int= 0.05
+            speed:int= 0.05,
+            background = "#FFFFFF"
         ):
 
         self._origin = origin
@@ -23,6 +24,7 @@ class Maze:
         self.cell_y = cell_size_y
 
         self._speed = speed
+        self._background = background
         self._win = win
 
         self._cells = []
@@ -70,4 +72,4 @@ class Maze:
 
     
     def __repr__(self):
-        return f"Class: Maze(self, win={self._win}, cords={self._origin}, num_rows={self.rows}, num_cols={self.cols}, cell_size_x={self.cell_x}, cell_size_y={self.cell_y})"
+        return f"Class: Maze(self, win={self._win}, origin={self._origin}, num_rows={self.rows}, num_cols={self.cols}, cell_size_x={self.cell_x}, cell_size_y={self.cell_y}, speed={self._speed}, background={self._background})"

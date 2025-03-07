@@ -3,7 +3,7 @@ from tkinter import Tk, BOTH, Canvas, Frame
 from objects.line import Line
 
 class Window:
-    def __init__(self, width:int, height:int):
+    def __init__(self, width:int, height:int, background):
 
         self.__root = Tk()
         self.__root.title("Maze solver")
@@ -11,7 +11,7 @@ class Window:
         self.width = width
         self.height = height
     
-        self.canvas = Canvas(self.__root, width=self.width, height=self.height, background="#5050AA")
+        self.canvas = Canvas(self.__root, width=self.width, height=self.height, background=background)
         self.canvas.pack(padx=5, pady=5)
         self.running = False
 

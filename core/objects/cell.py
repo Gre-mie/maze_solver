@@ -4,8 +4,8 @@ from objects.line import Line
 from objects.point import Point
 
 class Cell:
-    def __init__(self, window:Window=None, p1:Point=Point(None, None), p2:Point=Point(None, None), *, col="#223300"):
-        self.__win = window
+    def __init__(self, window:Window=None, p1:Point=Point(None, None), p2:Point=Point(None, None), *, col="#223300", background="#FFFFFF"):
+        self._win = window
 
         self.p1 = p1
         self.p2 = p2
@@ -15,7 +15,8 @@ class Cell:
         self.top = True
         self.bottom = True
 
-        self.line_col = col
+        self._line_col = col
+        self._background = background
 
 
     # Returns the center of the cell object
@@ -28,23 +29,35 @@ class Cell:
     
     
     # Sets the position of the cells and calls draw
+    # Lines are the background colour if None
     def draw(self, p1:Point, p2:Point):
 
         self.p1 = p1
         self.p2 = p2
 
+        left_line = Line(Point(self.p1.x, self.p1.y), Point(self.p1.x, self.p2.y))
         if self.left:
-            left_line = Line(Point(self.p1.x, self.p1.y), Point(self.p1.x, self.p2.y))
-            self.__win.draw_line(left_line, self.line_col)
+            self._win.draw_line(left_line, self._line_col)
+        else:
+            self._win.draw_line(left_line, self._background)
+        
+        right_line = Line(Point(self.p2.x, self.p1.y), Point(self.p2.x, self.p2.y))
         if self.right:
-            right_line = Line(Point(self.p2.x, self.p1.y), Point(self.p2.x, self.p2.y))
-            self.__win.draw_line(right_line, self.line_col)
+            self._win.draw_line(right_line, self._line_col)
+        else:
+            self._win.draw_line(right_line, self._line_col)
+
+        top_line = Line(Point(self.p1.x, self.p1.y), Point(self.p2.x, self.p1.y))
         if self.top:
-            top_line = Line(Point(self.p1.x, self.p1.y), Point(self.p2.x, self.p1.y))
-            self.__win.draw_line(top_line, self.line_col)
+            self._win.draw_line(top_line, self._line_col)
+        else:
+            self._win.draw_line(top_line, self._background)
+
+        bottom_line = Line(Point(self.p1.x, self.p2.y), Point(self.p2.x, self.p2.y))
         if self.bottom:
-            bottom_line = Line(Point(self.p1.x, self.p2.y), Point(self.p2.x, self.p2.y))
-            self.__win.draw_line(bottom_line, self.line_col)
+            self._win.draw_line(bottom_line, self._line_col)
+        else:
+            self._win.draw_line(bottom_line, self._background)
     
 
     # draws a line from the center of This Cell to the center of the to_cell Cell
@@ -53,9 +66,11 @@ class Cell:
         if redo:
             line_col = "grey"
         
-        self.__win.draw_line(Line(self.get_center(), to_cell.get_center()), line_col) # use the helper funciton here
+        self._win.draw_line(Line(self.get_center(), to_cell.get_center()), line_col)
+
+    
 
 
     def __repr__(self):
-        return f"Class: Cell(self, window={self.__win}, p1={self.p1}, p2={self.p2}):"
+        return f"Class: Cell(self, window={self.__win}, p1={self.p1}, p2={self.p2}, col={self._line_col}, background={self._background})"
         
