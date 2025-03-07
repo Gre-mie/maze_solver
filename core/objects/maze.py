@@ -36,6 +36,8 @@ class Maze:
     # return an array of Cell objects, each sub array represents a column
     # Calls draw_cell on each cell
     def _create_cells(self):
+        if self.cols <= 0 or self.rows <= 0:
+            raise ValueError("Rows and columns must be a positive int")
 
         for i in range(self.cols):
             col = []

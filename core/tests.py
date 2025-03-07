@@ -12,7 +12,7 @@ class Tests(unittest.TestCase):
         self.assertEqual(len(maze._cells), cols)
         self.assertEqual(len(maze._cells[0]), rows)
     
-    
+
     def test_maze_row_column_creation_odd(self):
         cols = 3
         rows = 5
@@ -24,18 +24,34 @@ class Tests(unittest.TestCase):
     def test_maze_row_column_creation_zero_val_cols(self):
         cols = 0
         rows = 5
-        maze = Maze(num_cols=cols, num_rows=rows)
-        self.assertEqual(maze._cells, [])
+        with self.assertRaises(ValueError):
+            maze = Maze(num_cols=cols, num_rows=rows)
     
 
     def test_maze_row_column_creation_zero_val_rows(self):
         cols = 5
         rows = 0
-        maze = Maze(num_cols=cols, num_rows=rows)
-        self.assertEqual(len(maze._cells), cols)
+        with self.assertRaises(ValueError):
+            maze = Maze(num_cols=cols, num_rows=rows)
 
-        for col in maze._cells:
-            self.assertEqual(col, [])
+    def test_entrance_exits_average_maze(self):
+        cols = 5
+        rows = 5
+        maze = Maze(num_cols=cols, num_rows=rows)
+
+        self.assertEqual(maze._cells[0][0].top, False)
+        self.assertEqual(maze._cells[cols - 1][rows - 1].bottom, False)
+
+    def test_entrance_exits_one_cell_maze(self):
+        cols = 1
+        rows = 1
+        maze = Maze(num_cols=cols, num_rows=rows)
+
+        self.assertEqual(maze._cells[0][0].top, False)
+        self.assertEqual(maze._cells[cols - 1][rows - 1].bottom, False)
+    
+    
+        
     
     
 if __name__ == "__main__":
