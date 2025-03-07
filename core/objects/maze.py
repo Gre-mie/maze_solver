@@ -36,6 +36,9 @@ class Maze:
 
         self._create_cells()
         self._break_entrance_and_exit()
+        self._break_walls_r(0, 0) # starts at the first block in the grid
+
+        #print(self._cells[0][0].visited) # test
 
 
     # return an array of Cell objects, each sub array represents a column
@@ -86,12 +89,32 @@ class Maze:
         time.sleep(self._speed)
 
 
+    # Removes edge from top left corner and bottom right corner cells
     def _break_entrance_and_exit(self):
         self._cells[0][0].top = False
         self._draw_cell(0,0)
 
         self._cells[self.cols - 1][self.rows - 1].bottom = False
         self._draw_cell(self.cols - 1, self.rows - 1)
+
+
+    def _break_walls_r(self, i, j):
+        self._cells[i][j].visited = True
+
+        while True:
+            to_visit = []
+            print(f"to visit:\n{to_visit}")
+
+            
+
+            # Breaks out of the loop if there are no places to visit
+            if len(to_visit) < 1:
+                print(f"cell: {i}, {j}")
+                self._draw_cell(i, j)
+                break
+
+
+
     
     def __repr__(self):
         return f"Class: Maze(self, win={self._win}, origin={self._origin}, num_rows={self.rows}, num_cols={self.cols}, cell_size_x={self.cell_x}, cell_size_y={self.cell_y}, speed={self._speed}, background={self._background}, seed={self._seed})"

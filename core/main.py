@@ -1,7 +1,7 @@
 # main.py, runs the programme
 from objects.window import Window
 from objects.point import Point
-from objects.cell import Cell
+# from objects.cell import Cell
 from objects.maze import Maze
 
 
@@ -24,7 +24,8 @@ def main():
             cell_size_x = cell_width,
             cell_size_y = cell_height,
             speed = 0.005,
-            background = background_col
+            background = background_col,
+            seed=0,
         )
     
 

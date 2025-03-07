@@ -6,6 +6,8 @@ from objects.point import Point
 class Cell:
     def __init__(self, window:Window=None, p1:Point=Point(None, None), p2:Point=Point(None, None), *, col="#223300", background="#FFFFFF"):
         self._win = window
+        self._line_col = col
+        self._background = background
 
         self.p1 = p1
         self.p2 = p2
@@ -15,8 +17,8 @@ class Cell:
         self.top = True
         self.bottom = True
 
-        self._line_col = col
-        self._background = background
+        self.visited = False
+
 
 
     # Returns the center of the cell object
