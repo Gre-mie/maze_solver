@@ -112,7 +112,6 @@ class Maze:
             
             # Breaks out of the loop if there are no places to visit
             if len(to_visit) < 1:
-                print(f"cell: {i}, {j}")
                 self._draw_cell(i, j)
                 break
 
@@ -120,25 +119,21 @@ class Maze:
             visit = to_visit[random.randrange(len(to_visit))]
             # up
             if visit == directions[0]:
-                print("move up")
                 self._cells[i][j].top = False
                 self._cells[visit[0]][visit[1]].bottom = False
 
             # down
             elif visit == directions[1]:
-                print("move down")
                 self._cells[i][j].bottom = False
                 self._cells[visit[0]][visit[1]].top = False
 
             # left
             elif visit == directions[2]:
-                print("move left")
                 self._cells[i][j].left = False
                 self._cells[visit[0]][visit[1]].right = False
 
             # right
             elif visit == directions[3]:
-                print("move right")
                 self._cells[i][j].right = False
                 self._cells[visit[0]][visit[1]].left = False
 
