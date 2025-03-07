@@ -113,7 +113,7 @@ class Maze:
                     if self._cells[a][b].visited == False:
                         to_visit.append((a, b))
 
-            print(f"to visit:\n{to_visit}") # testing
+            print(f"to visit: {to_visit}") # testing
             
 
             # Breaks out of the loop if there are no places to visit
@@ -128,15 +128,26 @@ class Maze:
             # up
             if visit == directions[0]:
                 print("move up")
+                self._cells[i][j].top = False
+                self._cells[visit[0]][visit[1]].bottom = False
+
             # down
             elif visit == directions[1]:
                 print("move down")
+                self._cells[i][j].bottom = False
+                self._cells[visit[0]][visit[1]].top = False
+
             # left
             elif visit == directions[2]:
                 print("move left")
+                self._cells[i][j].left = False
+                self._cells[visit[0]][visit[1]].right = False
+
             # right
             elif visit == directions[3]:
                 print("move right")
+                self._cells[i][j].right = False
+                self._cells[visit[0]][visit[1]].left = False
 
 
 
