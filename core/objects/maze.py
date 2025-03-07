@@ -1,5 +1,6 @@
 # Maze object to hold and print the cells at a see-able speed
 import time
+import random
 from objects.cell import Cell
 from objects.point import Point
 
@@ -13,21 +14,25 @@ class Maze:
             cell_size_x:int=47, # size 50 - line width (3)
             cell_size_y:int=47,  # size 50 - line width (3)
             speed:int= 0.05,
-            background = "#FFFFFF"
+            background = "#FFFFFF",
+            seed:int|None = None,
         ):
 
         self._origin = origin
+        self._speed = speed
+        self._background = background
+        self._seed = seed
+        self._win = win
 
         self.rows = num_rows
         self.cols = num_cols
         self.cell_x = cell_size_x
         self.cell_y = cell_size_y
 
-        self._speed = speed
-        self._background = background
-        self._win = win
 
         self._cells = []
+
+        random.seed(self._seed)
 
         self._create_cells()
         self._break_entrance_and_exit()
@@ -89,4 +94,4 @@ class Maze:
         self._draw_cell(self.cols - 1, self.rows - 1)
     
     def __repr__(self):
-        return f"Class: Maze(self, win={self._win}, origin={self._origin}, num_rows={self.rows}, num_cols={self.cols}, cell_size_x={self.cell_x}, cell_size_y={self.cell_y}, speed={self._speed}, background={self._background})"
+        return f"Class: Maze(self, win={self._win}, origin={self._origin}, num_rows={self.rows}, num_cols={self.cols}, cell_size_x={self.cell_x}, cell_size_y={self.cell_y}, speed={self._speed}, background={self._background}, seed={self._seed})"
