@@ -103,9 +103,18 @@ class Maze:
 
         while True:
             to_visit = []
-            print(f"to visit:\n{to_visit}")
 
-            
+            # adds a direction to to_visit if its within the grid and has not been visited yet
+            directions = [(i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)] # up, down, left, right
+            for direction in directions:
+                a, b = direction
+                if a >= 0 and b >= 0 and a < self.cols and b < self.rows:
+                    print(f"cell: {a}, {b}   visited: {self._cells[a][b].visited}") # testing
+                    if self._cells[a][b].visited == False:
+                        to_visit.append((a, b))
+
+            print(f"to visit:\n{to_visit}") # testing
+            break # test
 
             # Breaks out of the loop if there are no places to visit
             if len(to_visit) < 1:
