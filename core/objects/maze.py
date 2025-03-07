@@ -38,7 +38,7 @@ class Maze:
         self._break_entrance_and_exit()
         self._break_walls_r(0, 0) # starts at the first block in the grid
 
-        #print(self._cells[0][0].visited) # test
+
 
 
     # return an array of Cell objects, each sub array represents a column
@@ -114,7 +114,7 @@ class Maze:
                         to_visit.append((a, b))
 
             print(f"to visit:\n{to_visit}") # testing
-            break # test
+            
 
             # Breaks out of the loop if there are no places to visit
             if len(to_visit) < 1:
@@ -122,6 +122,25 @@ class Maze:
                 self._draw_cell(i, j)
                 break
 
+            # picks a random direction
+            visit = to_visit[random.randrange(len(to_visit))]
+            print(f"visit: {visit}") # testing - should move to the right
+            # up
+            if visit == directions[0]:
+                print("move up")
+            # down
+            elif visit == directions[1]:
+                print("move down")
+            # left
+            elif visit == directions[2]:
+                print("move left")
+            # right
+            elif visit == directions[3]:
+                print("move right")
+
+
+
+            break # test
 
 
     
