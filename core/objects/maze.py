@@ -159,7 +159,7 @@ class Maze:
         return self._solve_r(0, 0)
     
 
-    # recurses through the maze until all cells are visited drawing the sovling path in red
+    # recurses through the maze until it finds a path that solves the maze
     def _solve_r(self, i, j):
         self._animate()
         self._cells[i][j].visited = True
