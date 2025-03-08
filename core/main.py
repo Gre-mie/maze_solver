@@ -27,6 +27,8 @@ def main():
             background = background_col,
             #seed=0,
         )
+    
+    maze.solve()
 
 
 

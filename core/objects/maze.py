@@ -147,6 +147,14 @@ class Maze:
             for cell in col:
                 cell.visited = False
 
+
+    def solve(self):
+        return self._solve_r(0, 0)
+    
+
+    def _solve_r(self, i, j):
+        pass
+
     
     def __repr__(self):
         return f"Class: Maze(self, win={self._win}, origin={self._origin}, num_rows={self.rows}, num_cols={self.cols}, cell_size_x={self.cell_x}, cell_size_y={self.cell_y}, speed={self._speed}, background={self._background}, seed={self._seed})"
