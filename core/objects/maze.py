@@ -95,6 +95,12 @@ class Maze:
         self._cells[self.cols - 1][self.rows - 1].bottom = False
         self._draw_cell(self.cols - 1, self.rows - 1)
 
+    
+    # Checks if the cords are to a cell within the maze
+    def _check_in_maze(self, i, j):
+        if i >= 0 and j >= 0 and i < self.cols and j < self.rows:
+            return True
+        return False
 
     # Walks through the maze removing walls on its way
     def _break_walls_r(self, i, j):
@@ -107,7 +113,7 @@ class Maze:
             directions = [(i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)] # up, down, left, right
             for direction in directions:
                 a, b = direction
-                if a >= 0 and b >= 0 and a < self.cols and b < self.rows:
+                if self._check_in_maze(a, b):#a >= 0 and b >= 0 and a < self.cols and b < self.rows:
                     if self._cells[a][b].visited == False:
                         to_visit.append((a, b))
             
@@ -153,7 +159,49 @@ class Maze:
     
 
     def _solve_r(self, i, j):
-        pass
+
+        self._animate()
+        self._cells[i][j].visited == True
+
+        # exit condition
+        if i == self.cols - 1 and j == self.rows - 1:
+            return True
+
+        directions = [(i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)] # up, down, left, right
+        for direction in directions:
+            a, b = direction
+            blocked = self._is_wall(i, j, a, b, directions)
+
+            if (
+                self._check_in_maze(i, j) and self._check_in_maze(a, b)
+                and self._cells[i][j].visited == False
+                and not blocked
+            ):
+                self._cells[i][j].draw_move(self._cells[a][b])
+    
+            
+            
+            
+
+
+    # checks if there is a wall in the direction
+    def _is_wall(self, i:int, j:int, col:int, row:int, directions):
+        # up
+        if (col, row) == directions[0]:
+            return self._cells[i][j].top
+        # down
+        elif (col, row) == directions[1]:
+            return self._cells[i][j].bottom
+        # left
+        elif (col, row) == directions[2]:
+            return self._cells[i][j].left
+        # right
+        elif (col, row) == directions[3]:
+            return self._cells[i][j].right
+        raise Exception("col and row must match one of the tuples in directions array")
+
+
+
 
     
     def __repr__(self):

@@ -25,7 +25,7 @@ def main():
             cell_size_y = cell_height,
             speed = 0.005,
             background = background_col,
-            #seed=0,
+            seed=0,
         )
     
     maze.solve()
