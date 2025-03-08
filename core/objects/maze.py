@@ -154,14 +154,15 @@ class Maze:
                 cell.visited = False
 
 
+    # A rapper function that is used outside the class to call _sole_r
     def solve(self):
         return self._solve_r(0, 0)
     
 
+    # recurses through the maze until all cells are visited drawing the sovling path in red
     def _solve_r(self, i, j):
-
         self._animate()
-        self._cells[i][j].visited == True
+        self._cells[i][j].visited = True
 
         # exit condition
         if i == self.cols - 1 and j == self.rows - 1:
@@ -174,15 +175,18 @@ class Maze:
 
             if (
                 self._check_in_maze(i, j) and self._check_in_maze(a, b)
-                and self._cells[i][j].visited == False
+                and self._cells[a][b].visited == False
                 and not blocked
             ):
                 self._cells[i][j].draw_move(self._cells[a][b])
     
+                result = self._solve_r(a, b)
+                if result == True:
+                    return result
+                else:
+                    self._cells[i][j].draw_move(self._cells[a][b], redo=True)
+        return False
             
-            
-            
-
 
     # checks if there is a wall in the direction
     def _is_wall(self, i:int, j:int, col:int, row:int, directions):
@@ -199,10 +203,7 @@ class Maze:
         elif (col, row) == directions[3]:
             return self._cells[i][j].right
         raise Exception("col and row must match one of the tuples in directions array")
-
-
-
-
+    
     
     def __repr__(self):
         return f"Class: Maze(self, win={self._win}, origin={self._origin}, num_rows={self.rows}, num_cols={self.cols}, cell_size_x={self.cell_x}, cell_size_y={self.cell_y}, speed={self._speed}, background={self._background}, seed={self._seed})"
